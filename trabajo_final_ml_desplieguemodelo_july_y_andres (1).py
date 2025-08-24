@@ -32,7 +32,7 @@ def preprocess_data(df, encoder, scaler):
 
     # Apply
     encoded_data = encoder.transform(scaled_df)
-    encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out())
+    encoded_df = pd.DataFrame(encoded_data.toarray(), columns=encoder.get_feature_names_out())
     
     #encoded_df.columns = encoded_df.columns.str.replace('cat__', '')
     #encoded_df.columns = encoded_df.columns.str.replace('remainder__', '')
