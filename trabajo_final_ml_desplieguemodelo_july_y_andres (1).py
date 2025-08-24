@@ -18,8 +18,11 @@ import os
 
 # Function to preprocess the data
 def preprocess_data(df, encoder, scaler):
-    for col in df.select_dtypes(include='object').columns:
-      df[col] = df[col].astype('category')
+    df['Desccripción Origen'] = df['Desccripción Origen'].astype('category')
+    df['Corredor'] = df['Corredor'].astype('category')
+    df['Nombre clase de transporte'] = df['Nombre clase de transporte'].astype('category')
+    df['Dia de la semana '] = df['Dia de la semana '].astype('category')
+    df['Tipo vehiculo'] = df['Tipo vehiculo'].astype('category')
 
     df = df.drop(['Cant caja grande', 'Cant caja mini', 'Cant caja pequeña', 'Cant caja mediana', 'Dia', 'Dia de la semana', 'Semana','Nº de transporte'], axis=1)
     df = df.drop('Tipo vehiculo', axis=1)
