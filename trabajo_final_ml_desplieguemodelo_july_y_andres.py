@@ -26,7 +26,7 @@ def preprocess_data(df, encoder, scaler):
 
     # Apply
     numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
-    scaled_data = loaded_scaler.transform(df[numeric_cols])
+    scaled_data = scaler.transform(df[numeric_cols])
     scaled_df = pd.DataFrame(scaled_data, columns=numeric_cols)
 
     # Select non-numerical columns from the original DataFrame
