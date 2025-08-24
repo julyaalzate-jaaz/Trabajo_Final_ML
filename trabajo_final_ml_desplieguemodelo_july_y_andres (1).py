@@ -27,32 +27,18 @@ def preprocess_data(df, encoder, scaler):
     df = df.drop(['Cant caja grande', 'Cant caja mini', 'Cant caja pequeña', 'Cant caja mediana', 'Dia', 'Dia de la semana', 'Semana','Nº de transporte'], axis=1)
     df = df.drop('Tipo vehiculo', axis=1)
 
-    # Apply
-    #numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
-    #scaled_data = scaler.transform(df[numeric_cols])
-    #scaled_df = pd.DataFrame(scaled_data, columns=numeric_cols)
-
-    # Select non-numerical columns from the original DataFrame
-    #non_numeric_cols = df.select_dtypes(exclude=['float64', 'int64']).columns
-    #df_non_numeric = df[non_numeric_cols]
-
-    # Reset index of both dataframes before concatenation to ensure proper alignment
-    #df_non_numeric = df_non_numeric.reset_index(drop=True)
-    #scaled_df = scaled_df.reset_index(drop=True)
-
-    # Concatenate the non-numerical and scaled numerical DataFrames
-    #df_scaled_combined = pd.concat([df_non_numeric, scaled_df], axis=1)
-
     scaled_data = scaler.transform(df)
     scaled_df = pd.DataFrame(scaled_data, columns=scaler.get_feature_names_out())
 
     # Apply
     encoded_data = encoder.transform(scaled_df)
     encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out())
-    encoded_df.columns = encoded_df.columns.str.replace('cat__', '')
-    encoded_df.columns = encoded_df.columns.str.replace('remainder__', '')
-    df=encoded_df.columns
+    
+    #encoded_df.columns = encoded_df.columns.str.replace('cat__', '')
+    #encoded_df.columns = encoded_df.columns.str.replace('remainder__', '')
+    df=encoded_df
     return df
+
 
 # Load the pre-trained models and transformers
 # Assuming your models and transformers are in a directory named 'saved_models'
