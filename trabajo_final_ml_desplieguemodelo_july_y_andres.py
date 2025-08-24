@@ -41,8 +41,8 @@ def preprocess_data(df, encoder, scaler):
     df_scaled_combined = pd.concat([df_non_numeric, scaled_df], axis=1)
 
     # Apply
-    encoded_data = loaded_encoder.transform(df_scaled_combined)
-    encoded_df = pd.DataFrame(encoded_data, columns=loaded_encoder.get_feature_names_out())
+    encoded_data = encoder.transform(df_scaled_combined)
+    encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out())
     encoded_df.columns = encoded_df.columns.str.replace('cat__', '')
     encoded_df.columns = encoded_df.columns.str.replace('remainder__', '')
     df=encoded_df.columns
