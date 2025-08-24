@@ -129,3 +129,7 @@ def main():
 
         except Exception as e:
             st.error(f"Ocurrió un error al procesar el archivo: {e}")
+
+
+if __name__ == "__main__":
+    main()
